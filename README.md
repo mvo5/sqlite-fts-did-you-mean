@@ -15,4 +15,8 @@ Did you mean:
 time 0.024138927459716797
 ```
 
-The tests/test_fts_spell.py has some more example usage.
+The tests/test_fts_spell.py has some more example usage. To run them
+type:
+```
+$ PYTHONPATH=. python3 tests/test_fts_spell.py
+```
