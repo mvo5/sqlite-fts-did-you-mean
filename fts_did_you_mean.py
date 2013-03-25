@@ -61,7 +61,7 @@ WHERE Description_term.term = ? and Description_term.col = "*"
         if data:
             # rank is based on number of "documents" or "occurences" found
             rank = data[0]
-            suggestions[rank] = w
+            suggestions[w] = rank
     return suggestions
 
 
@@ -77,6 +77,7 @@ if __name__ == "__main__":
 
     now = time.time()
     suggestions = get_similar_terms_from_db(connection, search_term)
-    for k in sorted(suggestions, reverse=True):
-        print(suggestions[k])
-    print("spelling suggestion calc %s" % (time.time() - now))
+    print("Did you mean:")
+    for k in sorted(suggestions, key=suggestions.get, reverse=True):
+        print(" %s (rank: %s)" % (k, suggestions[k]))
+    print("time %s" % (time.time() - now))
